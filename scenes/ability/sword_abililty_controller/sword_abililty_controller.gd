@@ -33,7 +33,8 @@ func on_timer_timeout():
 		return a_distance < b_distance
 	)
 	var sword = sword_abililty.instantiate() as SwordAbililty
-	player.get_parent().add_child(sword)
+	var foreground_layer = get_tree().get_first_node_in_group("foreground_layer")
+	foreground_layer.add_child(sword)
 	sword.hitbox_component.damage = damage
 	sword.global_position = enemies[0].global_position
 	# give a little random unit vector and move a little way away from that
