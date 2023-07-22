@@ -1,11 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtg3vxagmiomm"]
+[gd_scene load_steps=8 format=3 uid="uid://dtg3vxagmiomm"]
 
 [ext_resource type="Texture2D" uid="uid://c5ndpwtmmwc" path="res://scenes/game_object/player/player.png" id="1_0ab2r"]
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_ypp6v"]
+[ext_resource type="Script" path="res://scenes/component/health_component.gd" id="2_3bleu"]
 [ext_resource type="PackedScene" uid="uid://b8jaxqiqukwmj" path="res://scenes/ability/sword_abililty_controller/sword_abililty_controller.tscn" id="3_fa4rm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hev7r"]
 radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g16re"]
+radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e5lco"]
 radius = 6.0
@@ -15,13 +19,20 @@ collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_ypp6v")
 
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_3bleu")
+
 [node name="AbililtyManager" type="Node" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="DamageIntervalTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="PickupArea2D" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea2D"]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_hev7r")
 debug_color = Color(0.239216, 0.619608, 0.411765, 0.419608)
@@ -29,6 +40,15 @@ debug_color = Color(0.239216, 0.619608, 0.411765, 0.419608)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_0ab2r")
 offset = Vector2(0, -8)
+
+[node name="CollisionArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea2D"]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_g16re")
+debug_color = Color(0.980392, 0, 0.396078, 0.419608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
