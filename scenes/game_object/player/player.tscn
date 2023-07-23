@@ -33,7 +33,9 @@ script = ExtResource("1_ypp6v")
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("2_3bleu")
 
-[node name="AbililtyManager" type="Node" parent="."]
+[node name="Abilities" type="Node" parent="."]
+
+[node name="SwordAbililtyController" parent="Abilities" instance=ExtResource("3_fa4rm")]
 
 [node name="DamageIntervalTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -77,5 +79,3 @@ debug_color = Color(0.980392, 0, 0.396078, 0.419608)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_e5lco")
-
-[node name="SwordAbililtyController" parent="." instance=ExtResource("3_fa4rm")]
