@@ -15,9 +15,17 @@ func _ready():
 	%QuitButton.pressed.connect(on_quit_pressed)
 
 
+func play_jingle(defeat: bool = false) -> void:
+	if defeat:
+		$DefeatAudioStreamPlayer.play()
+	else:
+		$VictoryAudioStreamPlayer.play()
+
+
 func set_defeat():
 	%TitleLabel.text = "Defeat"
 	%DescriptionLabel.text = "You lost!"
+	play_jingle(true)
 
 
 func on_restart_pressed():
