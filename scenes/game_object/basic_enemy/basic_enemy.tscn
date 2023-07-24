@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://bmn4yxj3stfwr"]
+[gd_scene load_steps=14 format=3 uid="uid://bmn4yxj3stfwr"]
 
 [ext_resource type="Texture2D" uid="uid://i4fd1nmc8dsd" path="res://scenes/game_object/basic_enemy/basic_enemy.png" id="1_achbw"]
 [ext_resource type="Script" path="res://scenes/game_object/basic_enemy/basic_enemy.gd" id="1_ogpgs"]
 [ext_resource type="PackedScene" uid="uid://cj3jdnvxkgfxu" path="res://scenes/component/health_component.tscn" id="2_ap0kb"]
+[ext_resource type="PackedScene" uid="uid://yvkdrx1msswm" path="res://scenes/component/hit_flash_component.tscn" id="2_lphwr"]
 [ext_resource type="PackedScene" uid="uid://mxwtim2s4s85" path="res://scenes/component/vial_drop_component.tscn" id="4_ly5vg"]
 [ext_resource type="PackedScene" uid="uid://b76nyfmfjfljv" path="res://scenes/component/hurt_box_component.tscn" id="4_qjdxs"]
 [ext_resource type="PackedScene" uid="uid://y3mhwt8tmstx" path="res://scenes/component/death_component.tscn" id="6_t5x01"]
@@ -87,6 +88,10 @@ autoplay = "walk"
 libraries = {
 "": SubResource("AnimationLibrary_34v6v")
 }
+
+[node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("2_lphwr")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../Visuals/Sprite2D")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("7_n6pcg")]
 
