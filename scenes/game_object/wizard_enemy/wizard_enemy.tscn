@@ -1,14 +1,20 @@
-[gd_scene load_steps=16 format=3 uid="uid://d4cqx00rjmdxh"]
+[gd_scene load_steps=22 format=3 uid="uid://d4cqx00rjmdxh"]
 
 [ext_resource type="Script" path="res://scenes/game_object/wizard_enemy/wizard_enemy.gd" id="1_eguc4"]
 [ext_resource type="Texture2D" uid="uid://q8holg6ws8rg" path="res://scenes/game_object/wizard_enemy/wizard_enemy.png" id="1_o2p76"]
 [ext_resource type="PackedScene" uid="uid://yvkdrx1msswm" path="res://scenes/component/hit_flash_component.tscn" id="2_2586b"]
 [ext_resource type="PackedScene" uid="uid://cj3jdnvxkgfxu" path="res://scenes/component/health_component.tscn" id="2_bbthr"]
 [ext_resource type="PackedScene" uid="uid://y3mhwt8tmstx" path="res://scenes/component/death_component.tscn" id="2_lncph"]
+[ext_resource type="PackedScene" uid="uid://d0m7n0mtscjwd" path="res://scenes/component/random_audio_stream_player_2d_component.tscn" id="2_tnpl1"]
 [ext_resource type="Shader" path="res://scenes/component/hit_flash_component.gdshader" id="3_g3d8c"]
 [ext_resource type="PackedScene" uid="uid://mxwtim2s4s85" path="res://scenes/component/vial_drop_component.tscn" id="3_md3jb"]
+[ext_resource type="AudioStream" uid="uid://b4c427ng7j41v" path="res://assets/audio/footstep_carpet_000.ogg" id="3_qj460"]
+[ext_resource type="AudioStream" uid="uid://bod3kc75pnbbk" path="res://assets/audio/footstep_carpet_001.ogg" id="4_5nj32"]
 [ext_resource type="PackedScene" uid="uid://b76nyfmfjfljv" path="res://scenes/component/hurt_box_component.tscn" id="4_pdw5y"]
+[ext_resource type="AudioStream" uid="uid://n5kjiji3ynqc" path="res://assets/audio/footstep_carpet_002.ogg" id="5_qrhyh"]
 [ext_resource type="PackedScene" uid="uid://dkl17c6occf1k" path="res://scenes/component/velocity_component.tscn" id="5_u6ac1"]
+[ext_resource type="AudioStream" uid="uid://r0k1q6tlrwe5" path="res://assets/audio/footstep_carpet_003.ogg" id="6_wq4x7"]
+[ext_resource type="AudioStream" uid="uid://bn3e2b5m81elm" path="res://assets/audio/footstep_carpet_004.ogg" id="7_epvnf"]
 
 [sub_resource type="Animation" id="Animation_g78hg"]
 length = 0.001
@@ -114,7 +120,7 @@ _data = {
 "walk": SubResource("Animation_qfkin")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lx277"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q7wdp"]
 resource_local_to_scene = true
 shader = ExtResource("3_g3d8c")
 shader_parameter/lerp_percent = 0.0
@@ -136,10 +142,14 @@ libraries = {
 "": SubResource("AnimationLibrary_5b0co")
 }
 
+[node name="HitRandomAudioPlayerComponent" parent="." instance=ExtResource("2_tnpl1")]
+max_distance = 300.0
+streams = Array[AudioStream]([ExtResource("3_qj460"), ExtResource("4_5nj32"), ExtResource("5_qrhyh"), ExtResource("6_wq4x7"), ExtResource("7_epvnf")])
+
 [node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("2_2586b")]
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
-hit_flash_material = SubResource("ShaderMaterial_lx277")
+hit_flash_material = SubResource("ShaderMaterial_q7wdp")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_bbthr")]
 max_health = 30.0
