@@ -11,7 +11,7 @@ func _ready():
 	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	
 	get_tree().paused = true
-	%RestartButton.pressed.connect(on_restart_pressed)
+	%ContinueButton.pressed.connect(on_continue_pressed)
 	%QuitButton.pressed.connect(on_quit_pressed)
 
 
@@ -28,12 +28,15 @@ func set_defeat():
 	play_jingle(true)
 
 
-func on_restart_pressed():
+func on_continue_pressed():
 	ScreenTransition.transition()
 	await ScreenTransition.transitioned_halfway
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://scenes/main/main.tscn")
+	get_tree().change_scene_to_file("res://scenes/ui/meta_menu.tscn")
 
 
 func on_quit_pressed():
-	get_tree().quit()
+	ScreenTransition.transition()
+	await ScreenTransition.transitioned_halfway
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
