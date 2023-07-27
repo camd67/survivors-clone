@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://ch3xebp3ws43h"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_ufmg5"]
+
+[resource]
+script = ExtResource("1_ufmg5")
+id = "anvil_count"
+max_quantity = 2
+name = "Anvil Count"
+description = "Adds one additional anvil"
