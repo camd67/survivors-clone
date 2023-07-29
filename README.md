@@ -7,10 +7,10 @@ A little survivors clone game created following the excellent course
 
 ![Main Menu](./docs/main_menu.PNG)
 
-![Early gameplay](./docs/gameplay_1.mp4)
+https://github.com/camd67/survivors-clone/assets/7773345/b89be0ef-8735-42c6-bc6e-09ae3264ea2c
 
-![Late gameplay](./docs/gameplay_2.mp4)
+https://github.com/camd67/survivors-clone/assets/7773345/df93c791-b48e-4726-a00d-d50b04431e17)https://github.com/camd67/survivors-clone/assets/7773345/df93c791-b48e-4726-a00d-d50b04431e17
 
-![Defeat](./docs/gameplay_3.mp4)
+https://github.com/camd67/survivors-clone/assets/7773345/72f90bbf-d7f0-4f11-86ee-f60f85117bfa)https://github.com/camd67/survivors-clone/assets/7773345/72f90bbf-d7f0-4f11-86ee-f60f85117bfa
 
 ![Meta Upgrades](./docs/meta_upgrades.PNG)
