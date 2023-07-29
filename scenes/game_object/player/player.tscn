@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dtg3vxagmiomm"]
+[gd_scene load_steps=19 format=3 uid="uid://dtg3vxagmiomm"]
 
 [ext_resource type="Texture2D" uid="uid://c5ndpwtmmwc" path="res://scenes/game_object/player/player.png" id="1_0ab2r"]
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_ypp6v"]
@@ -11,7 +11,6 @@
 [ext_resource type="AudioStream" uid="uid://cl8jtta88x7kh" path="res://assets/audio/impactMining_002.ogg" id="5_wflhn"]
 [ext_resource type="AudioStream" uid="uid://c5cia5wvfo4rq" path="res://assets/audio/impactMining_003.ogg" id="6_gn0bu"]
 [ext_resource type="AudioStream" uid="uid://btrgwcf6mxvy6" path="res://assets/audio/impactMining_004.ogg" id="7_1yk1n"]
-[ext_resource type="PackedScene" uid="uid://dylf1pgd4nnny" path="res://scenes/ability/anvil_ability_controller/anvil_ability_controller.tscn" id="12_qc8ao"]
 
 [sub_resource type="Animation" id="Animation_w13b1"]
 length = 0.001
@@ -184,5 +183,3 @@ debug_color = Color(0.980392, 0, 0.396078, 0.419608)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_e5lco")
-
-[node name="AnvilAbilityController" parent="." instance=ExtResource("12_qc8ao")]
