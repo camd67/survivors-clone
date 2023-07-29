@@ -1,12 +1,64 @@
-[gd_scene load_steps=8 format=3 uid="uid://b62vqmtixuijg"]
+[gd_scene load_steps=12 format=3 uid="uid://b62vqmtixuijg"]
 
 [ext_resource type="Script" path="res://scenes/ability/anvil_ability/avil_ability.gd" id="1_ai0rv"]
 [ext_resource type="Texture2D" uid="uid://dwymopqdrkm4x" path="res://scenes/ability/anvil_ability/anvil.png" id="1_rsvgx"]
 [ext_resource type="PackedScene" uid="uid://bcd7hhoax2wgf" path="res://scenes/component/hit_box_component.tscn" id="2_7nkn3"]
+[ext_resource type="Texture2D" uid="uid://dgn5541acr0ab" path="res://assets/particle.png" id="4_dchss"]
+
+[sub_resource type="Animation" id="Animation_06eal"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBoxComponent/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ni5te"]
 resource_name = "default"
-length = 0.6
+length = 0.7
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -51,51 +103,24 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.6),
+"times": PackedFloat32Array(0.7),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"queue_free"
 }]
 }
-
-[sub_resource type="Animation" id="Animation_06eal"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HitBoxComponent/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GPUParticles2D:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Visuals:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_spmgg"]
@@ -103,6 +128,28 @@ _data = {
 "RESET": SubResource("Animation_06eal"),
 "default": SubResource("Animation_ni5te")
 }
+
+[sub_resource type="Curve" id="Curve_ws22v"]
+_data = [Vector2(0, 0.357895), 0.0, 0.0, 0, 0, Vector2(0.125641, 1), 0.0, 0.0, 0, 0, Vector2(0.535897, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_jugm4"]
+curve = SubResource("Curve_ws22v")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r5uyx"]
+emission_shape = 1
+emission_sphere_radius = 6.0
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_max = 360.0
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_jugm4")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y678d"]
 radius = 24.0
@@ -115,6 +162,17 @@ autoplay = "default"
 libraries = {
 "": SubResource("AnimationLibrary_spmgg")
 }
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_r5uyx")
+texture = ExtResource("4_dchss")
+lifetime = 0.2
+one_shot = true
+explosiveness = 0.9
+fixed_fps = 0
+interpolate = false
 
 [node name="HitBoxComponent" parent="." instance=ExtResource("2_7nkn3")]
 
